@@ -2,6 +2,7 @@
 #define NUMERICAL_UTILS_H
 
 #include <globals.hh>
+#include <vector>
 
 namespace nexus {
 

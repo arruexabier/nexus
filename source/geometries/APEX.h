@@ -5,7 +5,7 @@
 // Forward declaration of G4TwoVector (i.e. 'class G4TwoVector;')
 // gives a compilation error which I don't know how to debug right now.
 #include <G4TwoVector.hh>
-
+#include <vector>
 class G4VPhysicalVolume;
 class G4MaterialPropertiesTable;
 class G4GenericMessenger;
