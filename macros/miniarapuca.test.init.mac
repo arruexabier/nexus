@@ -1,0 +1,12 @@
+/control/execute macros/physics/OpticalPhysics.mac
+
+/nexus/RegisterGeometry XArapuca
+
+/nexus/RegisterGenerator MonochromaticBeam
+
+/nexus/RegisterPersistencyManager PersistencyManager
+/nexus/RegisterRunAction DefaultRunAction
+/nexus/RegisterEventAction DefaultEventAction
+/nexus/RegisterTrackingAction OpticalTrackingAction
+
+/nexus/RegisterMacro macros/miniarapuca.config.test.mac

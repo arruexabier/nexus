@@ -1,0 +1,8 @@
+## Generator for ARAPUCA efficiency measurements. Monochromator output
+
+/Generator/MonochromaticBeam/wavelength_mean    170. nm
+/Generator/MonochromaticBeam/wavelength_std     5.096 nm
+
+/Generator/MonochromaticBeam/ed_x               0.
+/Generator/MonochromaticBeam/ed_y              -1.
+/Generator/MonochromaticBeam/ed_z               0.

@@ -857,10 +857,19 @@ namespace nexus{
           G4RotationMatrix* rot3 = new G4RotationMatrix();
           rot3->rotateZ(90.*deg);
 
-          for (G4int i=0; i<num_phsensors_; ++i) {
+          // Custom SiPM center positions along the z-axis
+            const G4double sipm_z_positions[4] = {
+                -19.000*mm,
+                -6.665*mm,
+                  6.665*mm,
+                19.000*mm
+            };
+
+          for (G4int i=0; i<num_phsensors_-2; ++i) {
               G4ThreeVector pos(  -plate_length_/2. -sipm_thickn/2. -gap_,
                                   0.,
-                                  -plate_width_/2. + (0.5 + i) * plate_width_/num_phsensors_);
+                                  sipm_z_positions[i]);
+                                  //-plate_width_/2. + (0.5 + i) * plate_width_/num_phsensors_);
 
               new G4PVPlacement(  rot3, pos,
                                   sipm_ptr->GetModel(), sipm_logic_vol,
@@ -873,10 +882,19 @@ namespace nexus{
             G4RotationMatrix* rot4 = new G4RotationMatrix();
             rot4->rotateZ(-90.*deg);
 
-            for (G4int i=0; i<num_phsensors_; ++i) {
+            // Custom SiPM center positions along the z-axis
+            const G4double sipm_z_positions[4] = {
+                -19.000*mm,
+                -6.665*mm,
+                  6.665*mm,
+                19.000*mm
+            };
+
+            for (G4int i=0; i<num_phsensors_-2; ++i) {
                 G4ThreeVector pos(  +plate_length_/2. +sipm_thickn/2. +gap_,
                                     0.,
-                                    -plate_width_/2. + (0.5 + i) * plate_width_/num_phsensors_);
+                                    sipm_z_positions[i]);
+                                    //-plate_width_/2. + (0.5 + i) * plate_width_/num_phsensors_);
 
                 new G4PVPlacement(  rot4, pos,
                                     sipm_ptr->GetModel(), sipm_logic_vol,

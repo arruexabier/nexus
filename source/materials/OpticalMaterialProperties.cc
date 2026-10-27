@@ -956,7 +956,7 @@ namespace opticalprops {
     // Absorption length (ABSLENGTH)
     //// START: Implementation 1 of the pTP attenuation length
     std::vector<G4double> abs_energy = {optPhotMinE_, optPhotMaxE_};
-    std::vector<G4double> absLength = {1. * mm, 1. * mm};
+    std::vector<G4double> absLength = {1. * mm, 1. * mm};  //this is original
     //// END: Implementation 1 of the pTP attenuation length
     /// ------------------------------------------------------------------------
     //// START: Implementation 2 of the pTP attenuation length
@@ -994,6 +994,7 @@ namespace opticalprops {
     // Rayleigh scattering length (RAYLEIGH)
     std::vector<G4double> rayleigh_scattering_energy = {optPhotMinE_, optPhotMaxE_};
     std::vector<G4double> rayleigh_scattering_length = {2.75 * um, 2.75 * um};
+    
 
     mpt->AddProperty("RAYLEIGH", rayleigh_scattering_energy, rayleigh_scattering_length);
 
@@ -1010,6 +1011,25 @@ namespace opticalprops {
       optPhotMaxE_
     };
 
+    //XABIER: USE THIS TO TEST A SPECTRUM IN 110-300
+    std::vector<G4double> WLS_abs_energy_broad = {
+      optPhotMinE_,
+
+      // Just above 300 nm: no absorption
+      h_Planck*c_light/(301.0*nm),
+
+      // Just below 300 nm: strong absorption
+      h_Planck*c_light/(299.0*nm),
+
+      // Just above 110 nm: strong absorption
+      h_Planck*c_light/(111.0*nm),
+
+      // Just below 110 nm: no absorption
+      h_Planck*c_light/(109.0*nm),
+
+      optPhotMaxE_
+    };
+
     std::vector<G4double> WLS_absLength = {
       noAbsLength_  ,
       noAbsLength_  , noAbsLength_  ,
@@ -1018,7 +1038,19 @@ namespace opticalprops {
       noAbsLength_  , noAbsLength_  ,
       noAbsLength_  
     };
-    mpt->AddProperty("WLSABSLENGTH", WLS_abs_energy, WLS_absLength);
+
+    //this for 110-300 nm range
+    std::vector<G4double> WLS_absLength_broad = {
+      noAbsLength_,
+      1.*nm,
+      1.*nm,
+      1.*nm,
+      1.*nm,
+      noAbsLength_
+    };
+
+
+    mpt->AddProperty("WLSABSLENGTH", WLS_abs_energy_broad, WLS_absLength_broad);
 
     // WLS EMISSION SPECTRUM
     // This data was digitized from the 100 ºK curve of Fig. 1 of 
